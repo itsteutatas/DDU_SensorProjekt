@@ -1,0 +1,24 @@
+#include "DHT.h"
+#define DHTPIN 7  
+#define DHTTYPE DHT11   // DHT 22  (AM2302), AM2321
+
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  Serial.begin(9600);
+  dht.begin();
+}
+
+void loop() {
+  delay(4000);
+  float h = dht.readHumidity();
+  float t = dht.readTemperature();
+  float hic = dht.computeHeatIndex(t, h, false);
+  Serial.print("Temperature = ");
+  Serial.println(hic);
+  Serial.print("Humidity = ");
+  Serial.println(h);
+}
+
+
+https://www.circuitbasics.com/how-to-set-up-the-dht11-humidity-sensor-on-an-arduino/

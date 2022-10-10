@@ -1,0 +1,4 @@
+Django==4.1.1
+mysql_connector_repackaged==0.3.1
+PyMySQL==1.0.2
+pyserial==3.5
