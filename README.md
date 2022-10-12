@@ -1,4 +1,4 @@
-# DDU-SensorProjekt
+# DDU_SensorProjekt
 
 ## Intro
   The view on the climate is ever changing and therefore 
@@ -9,36 +9,28 @@
   to the temperatures in the diffrent office and or classrooms
   while still being accessible from everywhere with the correct login
 
-## Scope
-- [ ] Frontend dashboard
-  - Django?
-  - Pull data from database
-- [ ] Arduino to collect data
-  - Temperature
-  - Humidity
-  - Graphs
-  - Anything else?
-- [ ] Documentation
-  - User guide
-
 
 ## Userguide
+- [ ] Prerequisites
+  - Python 3
+  - XAMPP
+  - MySQL
 - [ ] Setup
   - Kør filen setup.sql for at lave og sæt databasen op
   - Tilslut Arduino efter Figur 1 og tilslut til computer med USB
   - Eventuelt flash “Arduino setup.txt” hvis det ikke allerede er på
   - Kør “pip install -r requirements.txt” i projektmappen for at installere de påkrævede packages
   - Åben XAMPP og slå MySQL til.
-  - Kør “python manage.py createsuperuser” i mappen “/frontend” i projekt mappen for at lave en super user. Efterlad alle andre end “username” og “password” blanke.
+  - Kør “python manage.py createsuperuser” i mappen “/frontend” i projekt mappen for at lave en super user. Efterlad alle andre end “username” og “password”    blanke.
   - Kør “python manage.py shell” i samme mappe og kør kommandoerne fra normalUser_setup.txt for at lave en normal bruger.
   - Kør “exit()” for at komme ud af shellet.
   - Kør “python manage.py runserver” i samme mappe for at starte webserveren.
+
 - [ ] Usage
   - Naviger til http://127.0.0.1:8000/ hvor webserveren kører
   - Login med admin:admin eller normalUser:normalUser
-
-
-
+- [ ] Service
+  - Place
 
 
 ## Knowledge usage
