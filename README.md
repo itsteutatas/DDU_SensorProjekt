@@ -29,8 +29,6 @@
 - [ ] Usage
   - Naviger til http://127.0.0.1:8000/ hvor webserveren kører
   - Login med admin:admin eller normalUser:normalUser
-- [ ] Service
-  - Place
 
 
 ## Knowledge usage
