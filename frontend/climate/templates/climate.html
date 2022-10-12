@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+<html>
+<body>
+
+<div class="row">
+    <div class="column table_outer" style="width: 20%">
+        <table border="0">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Humidity</th>
+                <th>Temperature</th>
+                <th>Time</th>
+            </tr>
+            </thead>
+            {% for x in data %}
+            <tr>
+                <td>{{ x.dataid }}</td>
+                <td>{{ x.humidity }}%</td>
+                <td>{{ x.temp }}°C</td>
+                <td>{{ x.date }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="column">
+        <canvas id="myChart" width="800" height="200"></canvas>
+        <canvas id="myChart2" width="800" height="200"></canvas>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            Chart.defaults.color = "#FFFFFF";
+            const dates = [];
+            const temps = [];
+            const humids = [];
+            {% for x in data %}
+            dates.push('{{ x.date }}');
+            temps.push('{{ x.temp }}');
+            humids.push('{{ x.humidity }}');
+            {% endfor %}
+            console.log(dates, temps, humids)
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels : dates,
+            datasets: [{
+                label: "Temperature",
+                data : temps,
+                backgroundColor: 'rgba(75, 192, 192, 1)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+            });
+            const ctx2 = document.getElementById('myChart2').getContext('2d');
+            const myChart2 = new Chart(ctx2, {
+                type: 'line',
+                data: {
+                    labels : dates,
+                    datasets: [{
+                        label: "Humidity",
+                        data : humids,
+                        backgroundColor: 'rgba(75, 192, 192, 1)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    </div>
+</table>
+</div>
+<div class="row">
+    <div class="column">
+        <p><a href="{% url 'logout' %}" style="color:white">Log Out</a></p>
+    </div>
+    <div class="column">
+        {% if user.is_superuser %}
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" name="run_script">Run script</button>
+        </form>
+        {% else %}
+        <p style="color: white;">Not allowed to run script</p>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>
